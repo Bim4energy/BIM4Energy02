@@ -17,8 +17,8 @@ except FileNotFoundError:
 except json.JSONDecodeError:
     st.error("There was an error decoding the JSON file.")
 
-# Set style for Matplotlib
-plt.style.use("seaborn-whitegrid")
+# Set a valid style for Matplotlib
+plt.style.use("ggplot")  # or another valid style from plt.style.available
 
 # Title
 st.title("BIM4Energy Case Study Explorer")
