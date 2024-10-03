@@ -6,6 +6,9 @@ import matplotlib.pyplot as plt
 import json
 import os
 
+# Set Streamlit to use wide mode (must be the first Streamlit command)
+st.set_page_config(layout="wide")
+
 # Debug: Check the current working directory
 st.write("Current directory:", os.getcwd())
 st.write("Expected file path:", os.path.abspath('BIM4Energy_Variables_Cleaned.json'))
@@ -22,9 +25,6 @@ except json.JSONDecodeError:
 
 # Debug: Check the structure of the JSON data
 st.write("Keys in JSON:", data.keys())
-
-# Set Streamlit to use wide mode
-st.set_page_config(layout="wide")
 
 # Set style for Seaborn
 sns.set(style="whitegrid")
