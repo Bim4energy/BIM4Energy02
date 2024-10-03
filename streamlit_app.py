@@ -9,7 +9,6 @@ import os
 # Set Streamlit to use wide mode (must be the first Streamlit command)
 st.set_page_config(layout="wide")
 
-
 # Load the JSON data
 try:
     with open('BIM4Energy_Variables_Cleaned.json') as json_file:
@@ -24,6 +23,9 @@ sns.set(style="whitegrid")
 
 # Title
 st.title("BIM4Energy Case Study Explorer")
+
+# Add the logo at the top of the sidebar
+st.sidebar.image("logo.png", use_column_width=True)
 
 # Input selections from the JSON file
 st.sidebar.header("Select Case Study Parameters")
@@ -62,13 +64,4 @@ energy_data = {
 # Display energy consumption bar chart
 with col2:
     st.subheader("Energy consumption (kWh/m²/y)")
-    energy_df = pd.DataFrame(energy_data).T
-    fig, ax = plt.subplots()
-    energy_df.plot(kind="bar", stacked=True, ax=ax, color=sns.color_palette("muted"))
-
-    # Ensure the figure is being rendered
-    st.write(fig)
-
-    ax.set_ylabel("Energy Consumption (kWh/m²/y)")
-    ax.set_title("Energy Consumption by Type")
-    st.pyplot(fig)
+ 
