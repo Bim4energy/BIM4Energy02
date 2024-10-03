@@ -59,16 +59,19 @@ investment_cost = st.sidebar.number_input("Estimated Investment (€)", min_valu
 improvement_percentage = st.sidebar.slider("Energy Improvement (%)", 0, 100, 25)
 
 ### Dynamic Calculation Based on Inputs ###
-# Base energy consumption values, for example, can be dependent on the building type and other parameters
+# Adjust base consumption based on various factors from the Excel file logic
+
+# Step 1: Establish baseline values for energy consumption based on building type, wall, glazing, etc.
+# Here, I’m using hypothetical coefficients for illustration, but these should be drawn from the Excel calculations.
 energy_baseline = {
-    "Heating": 8530 * (gross_floor_area / 100),  # Example: Adjust base consumption by floor area
-    "Cooling": 3983 * (gross_floor_area / 100),
-    "Interior Lighting": 3762 * (gross_floor_area / 100),
-    "Interior Equipment": 2070 * (gross_floor_area / 100),
-    "Water Systems": 1906 * (gross_floor_area / 100)
+    "Heating": 8000 * (gross_floor_area / 100) * (1 + 0.1 * wall_list.index(wall)) * (1 + 0.05 * glazing_list.index(glazing)),  # Adjust by wall and glazing
+    "Cooling": 3500 * (gross_floor_area / 100) * (1 + 0.08 * wall_list.index(wall)) * (1 + 0.07 * glazing_list.index(glazing)),
+    "Interior Lighting": 3000 * (gross_floor_area / 100),
+    "Interior Equipment": 2000 * (gross_floor_area / 100),
+    "Water Systems": 1500 * (gross_floor_area / 100)
 }
 
-# Improved energy values based on user input for improvement percentage
+# Step 2: Improved energy values based on user input for improvement percentage
 energy_improved = {key: value * (1 - improvement_percentage / 100) for key, value in energy_baseline.items()}
 
 # Show calculated results in the main area
