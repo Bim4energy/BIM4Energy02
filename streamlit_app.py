@@ -17,8 +17,8 @@ except FileNotFoundError:
 except json.JSONDecodeError:
     st.error("There was an error decoding the JSON file.")
 
-# Set a valid style for Matplotlib
-plt.style.use("ggplot")  # or another valid style from plt.style.available
+# Set style for Matplotlib
+plt.style.use("ggplot")
 
 # Title
 st.title("BIM4Energy Case Study Explorer")
@@ -58,18 +58,17 @@ st.sidebar.header("Investment and Energy Measures")
 investment_cost = st.sidebar.number_input("Estimated Investment (€)", min_value=1000, value=50000)
 improvement_percentage = st.sidebar.slider("Energy Improvement (%)", 0, 100, 25)
 
-# Base energy consumption values from Excel (Example Logic)
-# Values should come from the Excel/JSON based on the selected parameters
-
+### Dynamic Calculation Based on Inputs ###
+# Base energy consumption values, for example, can be dependent on the building type and other parameters
 energy_baseline = {
-    "Heating": 8530,  # from Excel logic
-    "Cooling": 3983,
-    "Interior Lighting": 3762,
-    "Interior Equipment": 2070,
-    "Water Systems": 1906
+    "Heating": 8530 * (gross_floor_area / 100),  # Example: Adjust base consumption by floor area
+    "Cooling": 3983 * (gross_floor_area / 100),
+    "Interior Lighting": 3762 * (gross_floor_area / 100),
+    "Interior Equipment": 2070 * (gross_floor_area / 100),
+    "Water Systems": 1906 * (gross_floor_area / 100)
 }
 
-# Improved energy values from Excel logic, modified by the energy improvement slider
+# Improved energy values based on user input for improvement percentage
 energy_improved = {key: value * (1 - improvement_percentage / 100) for key, value in energy_baseline.items()}
 
 # Show calculated results in the main area
