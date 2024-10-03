@@ -22,7 +22,7 @@ body {
 .energy-graph-container {
     padding: 16px;
     border-radius: 12px;
-    background-color: #F8F9FC;
+    background-color: #f44336;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 }
 
