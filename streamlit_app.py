@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import json
-import os
+import math
 
 # Set Streamlit to use wide mode
 st.set_page_config(layout="wide")
@@ -40,7 +40,7 @@ photovoltaic_list = data.get("Photovoltaic", ["No data"])
 # Sidebar input elements
 building_type = st.sidebar.selectbox("Select Building Type", case_list)
 city = st.sidebar.selectbox("Select City", cities_list)
-rotation = st.sidebar.selectbox("Select Rotation", rotation_list)
+rotation = st.sidebar.selectbox("Select Rotation (degrees)", rotation_list)
 wall = st.sidebar.selectbox("Select Wall Insulation", wall_list)
 glazing = st.sidebar.selectbox("Select Glazing Type", glazing_list)
 # Set default value of photovoltaic to the first element from the JSON
@@ -60,18 +60,15 @@ improvement_percentage = st.sidebar.slider("Energy Improvement (%)", 0, 100, 25)
 
 ### Dynamic Calculation Based on Inputs ###
 # Adjust base consumption based on various factors from the Excel file logic
-
-# Step 1: Establish baseline values for energy consumption based on building type, wall, glazing, etc.
-# Here, I’m using hypothetical coefficients for illustration, but these should be drawn from the Excel calculations.
 energy_baseline = {
-    "Heating": 8000 * (gross_floor_area / 100) * (1 + 0.1 * wall_list.index(wall)) * (1 + 0.05 * glazing_list.index(glazing)),  # Adjust by wall and glazing
+    "Heating": 8000 * (gross_floor_area / 100) * (1 + 0.1 * wall_list.index(wall)) * (1 + 0.05 * glazing_list.index(glazing)),
     "Cooling": 3500 * (gross_floor_area / 100) * (1 + 0.08 * wall_list.index(wall)) * (1 + 0.07 * glazing_list.index(glazing)),
     "Interior Lighting": 3000 * (gross_floor_area / 100),
     "Interior Equipment": 2000 * (gross_floor_area / 100),
     "Water Systems": 1500 * (gross_floor_area / 100)
 }
 
-# Step 2: Improved energy values based on user input for improvement percentage
+# Improved energy values based on user input for improvement percentage
 energy_improved = {key: value * (1 - improvement_percentage / 100) for key, value in energy_baseline.items()}
 
 # Show calculated results in the main area
@@ -82,23 +79,52 @@ st.write(f"Improved Energy Consumption: {sum(energy_improved.values()):,.2f} kWh
 # Layout for the main content
 col1, col2 = st.columns([1, 3])
 
-# Display energy consumption comparison based on the selected parameters
+### Angle Rotation Representation ###
+with col1:
+    st.subheader("Orientation (Rotation to North)")
+    # Draw a circular compass showing the angle of the building rotation
+    fig, ax = plt.subplots(figsize=(3, 3))
+    
+    # Plot a compass-like circle
+    ax.set_aspect('equal')
+    circle = plt.Circle((0, 0), 1, color='lightgrey', fill=True)
+    ax.add_artist(circle)
+    
+    # Plot the direction arrow
+    rotation_angle = int(rotation)  # Convert the rotation string to an integer
+    arrow_length = 0.9
+    ax.arrow(0, 0, arrow_length * math.cos(math.radians(rotation_angle)),
+             arrow_length * math.sin(math.radians(rotation_angle)),
+             head_width=0.1, head_length=0.1, fc='blue', ec='blue')
+    
+    # Plot labels (North, East, South, West)
+    ax.text(0, 1.1, 'N', ha='center', va='center', fontsize=12, color='black')
+    ax.text(1.1, 0, 'E', ha='center', va='center', fontsize=12, color='black')
+    ax.text(0, -1.1, 'S', ha='center', va='center', fontsize=12, color='black')
+    ax.text(-1.1, 0, 'W', ha='center', va='center', fontsize=12, color='black')
+
+    # Adjust plot limits and remove axes
+    ax.set_xlim(-1.2, 1.2)
+    ax.set_ylim(-1.2, 1.2)
+    ax.axis('off')
+    st.pyplot(fig)
+
+### Energy Consumption Line Chart ###
 with col2:
     st.subheader("Energy Consumption Comparison (kWh/year)")
     
     # Prepare energy data for the graph
-    energy_data = {
-        "Base Case": sum(energy_baseline.values()),
-        "Improved Case": sum(energy_improved.values())
-    }
+    categories = ["Heating", "Cooling", "Interior Lighting", "Interior Equipment", "Water Systems"]
+    base_values = list(energy_baseline.values())
+    improved_values = list(energy_improved.values())
     
-    energy_df = pd.DataFrame.from_dict(energy_data, orient='index', columns=["Energy Consumption (kWh)"])
-    
-    # Plot the energy consumption comparison
+    # Create a line plot comparing base case and improved case
     fig, ax = plt.subplots()
-    energy_df.plot(kind="bar", ax=ax, color=["#1f77b4", "#ff7f0e"])
+    ax.plot(categories, base_values, label='Base Case', marker='o', linestyle='-', color='blue')
+    ax.plot(categories, improved_values, label='Improved Case', marker='o', linestyle='-', color='orange')
     
     ax.set_ylabel("Energy Consumption (kWh/year)")
     ax.set_title("Energy Consumption Before and After Improvement")
+    ax.legend()
     
     st.pyplot(fig)
