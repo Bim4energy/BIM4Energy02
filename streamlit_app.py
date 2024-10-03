@@ -36,7 +36,9 @@ city = st.sidebar.selectbox("Select city", data.get("Cities", ["No data"]))
 rotation = st.sidebar.selectbox("Select rotation", data.get("Rotation", ["No data"]))
 wall = st.sidebar.selectbox("Select wall insulation", data.get("Wall", ["No data"]))
 glazing = st.sidebar.selectbox("Select glazing type", data.get("Glazing", ["No data"]))
-photovoltaic = st.sidebar.selectbox("Select photovoltaic power", data.get("Photovoltaic", ["No data"]))
+# Set default value of photovoltaic to the first element from the JSON
+photovoltaic_default = data.get("Photovoltaic", ["No data"])[0]
+photovoltaic = st.sidebar.selectbox("Select photovoltaic power", data.get("Photovoltaic", ["No data"]), index=0)
 
 # Example calculation based on the photovoltaic value (for testing)
 try:
@@ -51,10 +53,6 @@ st.write(f"Photovoltaic value (multiplied by 2): {photovoltaic_result} kW")
 # Layout for the main content
 col1, col2 = st.columns([1, 3])
 
-# Placeholder image to represent the building
-with col1:
-    st.image("logo.png", caption="Example building")
-
 # Dummy data for energy consumption graph
 energy_data = {
     "Base Case": {"Heating": 120, "Cooling": 60, "Other": 40},
@@ -64,4 +62,13 @@ energy_data = {
 # Display energy consumption bar chart
 with col2:
     st.subheader("Energy consumption (kWh/m²/y)")
- 
+    energy_df = pd.DataFrame(energy_data).T
+    fig, ax = plt.subplots()
+    energy_df.plot(kind="bar", stacked=True, ax=ax, color=sns.color_palette("muted"))
+
+    # Ensure the figure is being rendered
+    st.write(fig)
+
+    ax.set_ylabel("Energy Consumption (kWh/m²/y)")
+    ax.set_title("Energy Consumption by Type")
+    st.pyplot(fig)
