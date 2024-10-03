@@ -58,7 +58,7 @@ col1, col2 = st.columns([1, 3])
 
 # Placeholder image to represent the building
 with col1:
-    st.image("assets/logo.png", caption="Example building")
+    st.image("logo.png", caption="Example building")
 
 # Dummy data for energy consumption graph
 energy_data = {
