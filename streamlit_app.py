@@ -8,8 +8,19 @@ import math
 # Set Streamlit to use wide mode with a custom theme
 st.set_page_config(layout="wide", page_title="BIM4Energy Explorer", page_icon="⚡")
 
-# Load JSON (Mocked for the example)
-# Add your JSON loading code here
+# Load JSON data
+# Assuming data is loaded properly
+try:
+    with open('BIM4Energy_Variables_Cleaned.json') as json_file:
+        data = json.load(json_file)
+except FileNotFoundError:
+    st.error("The JSON file could not be found. Please check the file path.")
+except json.JSONDecodeError:
+    st.error("There was an error decoding the JSON file.")
+
+# Define option lists from the JSON (this was missing in the earlier code)
+wall_list = data.get("Wall", ["No data"])
+glazing_list = data.get("Glazing", ["No data"])
 
 # Define custom styles using st.markdown for modern look
 st.markdown("""
@@ -70,13 +81,13 @@ st.markdown('<h1 class="title-header">BIM4Energy Case Study Explorer</h1>', unsa
 st.sidebar.image("logo.png", use_column_width=True)
 st.sidebar.header("Select Case Study Parameters")
 
-# Input selections (Mocked data for illustration)
-building_type = st.sidebar.selectbox("Select Building Type", ["Single Family", "Residential Block"])
-city = st.sidebar.selectbox("Select City", ["Amsterdam", "Berlin", "Paris"])
-rotation = st.sidebar.selectbox("Select Rotation (degrees)", [0, 45, 90, 180])
-wall = st.sidebar.selectbox("Select Wall Insulation", ["No Change", "50mm Insulation", "100mm Insulation"])
-glazing = st.sidebar.selectbox("Select Glazing Type", ["Double Glazing", "Triple Glazing"])
-photovoltaic = st.sidebar.selectbox("Select Photovoltaic Power", ["No Change", "5kW", "10kW"])
+# Input selections from JSON
+building_type = st.sidebar.selectbox("Select Building Type", data.get("Case", ["No data"]))
+city = st.sidebar.selectbox("Select City", data.get("Cities", ["No data"]))
+rotation = st.sidebar.selectbox("Select Rotation (degrees)", data.get("Rotation", ["No data"]))
+wall = st.sidebar.selectbox("Select Wall Insulation", wall_list)
+glazing = st.sidebar.selectbox("Select Glazing Type", glazing_list)
+photovoltaic = st.sidebar.selectbox("Select Photovoltaic Power", data.get("Photovoltaic", ["No data"]))
 
 # Sidebar additional elements
 st.sidebar.header("Building Information")
