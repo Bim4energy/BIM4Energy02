@@ -13,3 +13,4 @@ stpyvista
 geovista
 colorcet
 requests
+seaborn
