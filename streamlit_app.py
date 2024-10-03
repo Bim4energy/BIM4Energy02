@@ -17,14 +17,10 @@ st.write("Expected file path:", os.path.abspath('BIM4Energy_Variables_Cleaned.js
 try:
     with open('BIM4Energy_Variables_Cleaned.json') as json_file:
         data = json.load(json_file)
-        st.write("JSON loaded successfully:", data)  # Display the data
 except FileNotFoundError:
     st.error("The JSON file could not be found. Please check the file path.")
 except json.JSONDecodeError:
     st.error("There was an error decoding the JSON file.")
-
-# Debug: Check the structure of the JSON data
-st.write("Keys in JSON:", data.keys())
 
 # Set style for Seaborn
 sns.set(style="whitegrid")
