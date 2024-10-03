@@ -4,12 +4,13 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
+import json  # Add the missing import for json
 
 # Set Streamlit to use wide mode with a custom theme
 st.set_page_config(layout="wide", page_title="BIM4Energy Explorer", page_icon="⚡")
 
 # Load JSON data
-# Assuming data is loaded properly
+# Make sure the file path is correct
 try:
     with open('BIM4Energy_Variables_Cleaned.json') as json_file:
         data = json.load(json_file)
@@ -17,10 +18,6 @@ except FileNotFoundError:
     st.error("The JSON file could not be found. Please check the file path.")
 except json.JSONDecodeError:
     st.error("There was an error decoding the JSON file.")
-
-# Define option lists from the JSON (this was missing in the earlier code)
-wall_list = data.get("Wall", ["No data"])
-glazing_list = data.get("Glazing", ["No data"])
 
 # Define custom styles using st.markdown for modern look
 st.markdown("""
@@ -85,8 +82,8 @@ st.sidebar.header("Select Case Study Parameters")
 building_type = st.sidebar.selectbox("Select Building Type", data.get("Case", ["No data"]))
 city = st.sidebar.selectbox("Select City", data.get("Cities", ["No data"]))
 rotation = st.sidebar.selectbox("Select Rotation (degrees)", data.get("Rotation", ["No data"]))
-wall = st.sidebar.selectbox("Select Wall Insulation", wall_list)
-glazing = st.sidebar.selectbox("Select Glazing Type", glazing_list)
+wall = st.sidebar.selectbox("Select Wall Insulation", data.get("Wall", ["No data"]))
+glazing = st.sidebar.selectbox("Select Glazing Type", data.get("Glazing", ["No data"]))
 photovoltaic = st.sidebar.selectbox("Select Photovoltaic Power", data.get("Photovoltaic", ["No data"]))
 
 # Sidebar additional elements
@@ -102,8 +99,8 @@ improvement_percentage = st.sidebar.slider("Energy Improvement (%)", 0, 100, 25)
 
 # Dynamic Calculation Based on Inputs (Placeholder logic)
 energy_baseline = {
-    "Heating": 8000 * (gross_floor_area / 100) * (1 + 0.1 * wall_list.index(wall)),
-    "Cooling": 3500 * (gross_floor_area / 100) * (1 + 0.08 * wall_list.index(wall)),
+    "Heating": 8000 * (gross_floor_area / 100) * (1 + 0.1 * wall.index(wall)),
+    "Cooling": 3500 * (gross_floor_area / 100) * (1 + 0.08 * wall.index(wall)),
     "Lighting": 3000 * (gross_floor_area / 100),
     "Equipment": 2000 * (gross_floor_area / 100),
     "Water Systems": 1500 * (gross_floor_area / 100)
