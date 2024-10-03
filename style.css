@@ -1,0 +1,48 @@
+/* General page layout */
+body {
+    font-family: 'Helvetica Neue', sans-serif;
+    background-color: #f5f7fa;
+}
+
+/* Sidebar styling */
+.sidebar .sidebar-content {
+    background-color: #f0f2f6;
+}
+
+/* Main title styling */
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #2D3748;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+/* Grid and layout improvements */
+.energy-graph-container {
+    padding: 16px;
+    border-radius: 12px;
+    background-color: #F8F9FC;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Customize Seaborn chart colors */
+.seaborn-whitegrid {
+    gridline-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Set button styles */
+button {
+    font-size: 14px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    background-color: #007ACC;
+    color: white;
+    border: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Other custom button hovers */
+button:hover {
+    background-color: #005f99;
+}
