@@ -1,0 +1,15 @@
+streamlit
+streamlit-folium
+reportlab
+geopy
+folium
+numpy
+matplotlib
+panel
+bokeh
+param
+pyvista
+stpyvista
+geovista
+colorcet
+requests

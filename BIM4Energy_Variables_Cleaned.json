@@ -1,0 +1,187 @@
+{
+    "Case": [
+        "Single family, terraced",
+        "Residential builiding block"
+    ],
+    "Cities": [
+        "Amsterdam",
+        "Antwerp",
+        "Athens",
+        "Bari",
+        "Berlin",
+        "Bologna",
+        "Bordeaux",
+        "Brno",
+        "Bruges",
+        "Brussels",
+        "Budapest",
+        "Burgas",
+        "Cologne",
+        "Cork",
+        "Daugavpils",
+        "Debrecen",
+        "Dortmund",
+        "Dublin",
+        "D\u00fcsseldorf",
+        "Eindhoven",
+        "Florence",
+        "Frankfurt",
+        "Genoa",
+        "Ghent",
+        "Graz",
+        "Hamburg",
+        "Heraklion",
+        "Innsbruck",
+        "Kaunas",
+        "Klaip\u0117da",
+        "Larnaca",
+        "Leipzig",
+        "Li\u00e8ge",
+        "Liep\u0101ja",
+        "Lille",
+        "Limassol",
+        "Limerick",
+        "Linz",
+        "Luxembourg",
+        "Lyon",
+        "Marseille",
+        "Milan",
+        "Miskolc",
+        "Munich",
+        "Nantes",
+        "Naples",
+        "Nice",
+        "Nicosia",
+        "Osijek",
+        "Ostrava",
+        "Palermo",
+        "Paris",
+        "Patras",
+        "Plovdiv",
+        "Prague",
+        "Riga",
+        "Rijeka",
+        "Rome",
+        "Rotterdam",
+        "Ruse",
+        "Salzburg",
+        "Sofia",
+        "Split",
+        "Strasbourg",
+        "Stuttgart",
+        "Szeged",
+        "The Hague",
+        "Thessaloniki",
+        "Toulouse",
+        "Turin",
+        "Utrecht",
+        "Valletta",
+        "Varna",
+        "Venice",
+        "Vienna",
+        "Vilnius",
+        "Zadar",
+        "Zagreb"
+    ],
+    "Rotation": [
+        45.0,
+        90.0,
+        135.0,
+        180.0,
+        -45.0,
+        -90.0,
+        -135.0
+    ],
+    "Wall": [
+        "No change",
+        "50 mm insulation added",
+        "100 mm insulation added",
+        "150 mm insulation added",
+        "200 mm insulation added"
+    ],
+    "Glazing": [
+        "No change",
+        "Double glazing 1,5 W/m2K",
+        "Double glazing 1,2 W/m2K",
+        "Triple glazing 0,8 W/m2K"
+    ],
+    "Ground floor": [
+        "No change",
+        "Insulation 150mm"
+    ],
+    "Roof": [
+        "No change",
+        "50 mm insulation added",
+        "100 mm insulation added",
+        "150 mm insulation added",
+        "200 mm insulation added",
+        "250 mm insulation added"
+    ],
+    "Rooflights": [
+        "No change",
+        "Double glazing 2,6 W/m2K",
+        "Double glazing 1,2 W/m2K",
+        "Triple glazing 0,8 W/m2K"
+    ],
+    "Airtightness": [
+        "No change",
+        "1.2 airchange/hour",
+        "1.0 airchange/hour",
+        "0.6 airchange/hour"
+    ],
+    "Heating": [
+        "No change",
+        "Air source heat pump",
+        " "
+    ],
+    "Cooling": [
+        "No change",
+        "Air source heat pump"
+    ],
+    "Domestic hot water": [
+        "No change",
+        "Air source heat pump",
+        "Instant electric water heater",
+        "Boiler"
+    ],
+    "Lighting": [
+        "No change",
+        "LED fittings"
+    ],
+    "Ventilation": [
+        "No change",
+        "Heat recovery"
+    ],
+    "Equipment Load": [
+        "No change",
+        "Plug loads standard",
+        "Plug loads efficient"
+    ],
+    "District heating": [
+        "No change"
+    ],
+    "Photovoltaic": [
+        "No change",
+        "3 kW",
+        "4 kW",
+        "5 kW",
+        "10 kW",
+        "15 kW",
+        "20 kW"
+    ],
+    "Solar hot water": [
+        "No change"
+    ],
+    "Operational profile": [
+        "No change",
+        "Efficient behaviour"
+    ],
+    "Building automation": [
+        "No change",
+        "Heating, cooling, ventilating automated"
+    ],
+    "Lighting control": [
+        "No change",
+        "Presence and daylight detection"
+    ]
+}
