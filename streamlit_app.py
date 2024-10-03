@@ -9,9 +9,6 @@ import os
 # Set Streamlit to use wide mode (must be the first Streamlit command)
 st.set_page_config(layout="wide")
 
-# Debug: Check the current working directory
-st.write("Current directory:", os.getcwd())
-st.write("Expected file path:", os.path.abspath('BIM4Energy_Variables_Cleaned.json'))
 
 # Load the JSON data
 try:
