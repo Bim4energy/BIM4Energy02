@@ -122,15 +122,22 @@ with graph_col1:
     colors = ['gray', 'blue']
     
     # Plot baseline and selected values
-    ax.bar(categories, values, color=colors)
+    bars = ax.bar(categories, values, color=colors)
     
     # Adjust scale to show savings better (auto scaling the difference)
     ax.set_ylim([selected_energy_consumption * 0.98, baseline_energy_consumption * 1.02])  # Set limits to highlight difference
     
-    # Highlight energy savings as a text annotation
-    ax.text(1, selected_energy_consumption + total_energy_savings / 2, 
-            f"{total_energy_savings:,.2f} kWh saved",
-            ha='center', va='center', color='green', fontsize=10)
+    # Add value annotations to each bar (for energy savings)
+    for bar in bars:
+        yval = bar.get_height()
+        ax.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:,.2f} kWh', ha='center', va='bottom')
+    
+    # Add horizontal grid lines
+    ax.yaxis.grid(True, linestyle='--', linewidth=0.7, color='grey')
+
+    # Remove the right and top spines
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
     
     # Set labels and title
     ax.set_title("Energy Consumption and Savings", fontsize=10)
@@ -151,6 +158,13 @@ with graph_col2:
     for bar in bars:
         yval = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2, yval, f'{yval:,.2f} €', ha='center', va='bottom')
+
+    # Add horizontal grid lines
+    ax2.yaxis.grid(True, linestyle='--', linewidth=0.7, color='grey')
+
+    # Remove the right and top spines
+    ax2.spines['right'].set_visible(False)
+    ax2.spines['top'].set_visible(False)
 
     # Set labels and title
     ax2.set_title("Cost Comparison", fontsize=10)
