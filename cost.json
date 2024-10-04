@@ -1,0 +1,62 @@
+{
+  "No change": {
+    "Quantity": 0,
+    "Unit": "m2",
+    "Material cost (Euro)": 0,
+    "Material Unit": "m2",
+    "Labour cost (Euro)": 0,
+    "Labour Unit": "m2",
+    "Total cost": 23709,
+    "Energy consumption total (kWh)": 20251,
+    "Total savings (kWh)": 0,
+    "Energy savings (kWh/m2)": 0
+  },
+  "50 mm insulation added": {
+    "Quantity": 200,
+    "Unit": "m2",
+    "Material cost (Euro)": 4.96,
+    "Material Unit": "m2",
+    "Labour cost (Euro)": 175,
+    "Labour Unit": "m2",
+    "Total cost": 35992,
+    "Energy consumption total (kWh)": 21560,
+    "Total savings (kWh)": 2149,
+    "Energy savings (kWh/m2)": 0.09
+  },
+  "100 mm insulation added": {
+    "Quantity": 200,
+    "Unit": "m2",
+    "Material cost (Euro)": 9.98,
+    "Material Unit": "m2",
+    "Labour cost (Euro)": 175,
+    "Labour Unit": "m2",
+    "Total cost": 36996,
+    "Energy consumption total (kWh)": 21169,
+    "Total savings (kWh)": 2540,
+    "Energy savings (kWh/m2)": 0.11
+  },
+  "150 mm insulation added": {
+    "Quantity": 200,
+    "Unit": "m2",
+    "Material cost (Euro)": 12.98,
+    "Material Unit": "m2",
+    "Labour cost (Euro)": 175,
+    "Labour Unit": "m2",
+    "Total cost": 37596,
+    "Energy consumption total (kWh)": 21005,
+    "Total savings (kWh)": 2704,
+    "Energy savings (kWh/m2)": 0.11
+  },
+  "200 mm insulation added": {
+    "Quantity": 200,
+    "Unit": "m2",
+    "Material cost (Euro)": 14.98,
+    "Material Unit": "m2",
+    "Labour cost (Euro)": 175,
+    "Labour Unit": "m2",
+    "Total cost": 37996,
+    "Energy consumption total (kWh)": 20914,
+    "Total savings (kWh)": 2795,
+    "Energy savings (kWh/m2)": 0.12
+  }
+}
